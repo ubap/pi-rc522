@@ -94,6 +94,8 @@ class RFID(object):
         self.dev_write(0x15, 0x40)
         self.dev_write(0x11, 0x3D)
         self.dev_write(0x26, (self.antenna_gain<<4))
+        gsn_reg = self.dev_read(0x27)
+        self.dev_write(0x27, gsn_reg & 0x0F)
         self.set_antenna(True)
 
     def spi_transfer(self, data):
